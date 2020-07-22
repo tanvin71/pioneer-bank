@@ -74,8 +74,8 @@
         depositBtn.addEventListener("click",function(){
             const depositNumber = getInputNumber("depositAmount")
 
-            updateSpanTag("currentDeposit", depositNumber);
-            updateSpanTag("currentBalance",depositNumber); 
+            updateSpanText("currentDeposit", depositNumber);
+            updateSpantext("currentBalance",depositNumber); 
 
             document.getElementById("depositAmount").value ="";
         })
@@ -84,7 +84,10 @@
         const withdrawBtn = document.getElementById("addWithdraw");
         withdrawBtn.addEventListener("click",function(){
             const withdrawNumber = getInputNumber("withdrawAmount");
-            console.log(withdrawNumber);
+            updateSpanText("currentWithdraw",withdrawNumber);
+            updateSpanText("currentBalance",-1* withdrawNumber);
+
+            document.getElementById("withdrawAmount").value = "";
         })
         function getInputNumber(id) {
             const Amount = document.getElementById(id).value;
@@ -92,10 +95,10 @@
             return amountNumber;
         }
 
-        function updateSpanTag(id,depositNumber) {
+        function updateSpanText(id,addedNumber) {
             const current = document.getElementById(id).innerText;
             const currentNumber = parseFloat(current);
-            const totalAmount = depositNumber + currentNumber;
+            const totalAmount = addedNumber + currentNumber;
             document.getElementById(id).innerText = totalAmount;
         }
         
